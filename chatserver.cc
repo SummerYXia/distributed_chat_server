@@ -252,7 +252,7 @@ int chat_server(sockaddr_in self){
 			if (DEBUG) {
 				char* prefix = prepare_debug();
 				cout << prefix << " Server " << index << " forward \"" << buff << "\"" << endl;
-				free(prefix);
+				delete[] prefix;
 			}
 
 			int type = atoi(strtok(buff, "|"));
@@ -281,7 +281,7 @@ int chat_server(sockaddr_in self){
 			if (DEBUG) {
 				char* prefix = prepare_debug();
 				cout << prefix << " Client " << index << " posts \"" << buff << "\""<< endl;
-				free(prefix);
+				delete[] prefix;
 			}
 			handle_client(index, buff, sock);
 		}
@@ -394,7 +394,7 @@ void handle_client(int client_index, char* buff, int sock){
 				sprintf(forward_message, "%d|%d|%d|%d|%s", INITIAL, SELF, 0, client->group, message);
 				forward_to_servers(sock, forward_message, true);
 			}
-			free(message);
+			delete[] message;
 		}
 	}
 }
@@ -439,7 +439,7 @@ void send_to_clients(int sock, char* message, int group){
 			if (DEBUG){
 				char* prefix = prepare_debug();
 				cout << prefix << " Server sends \"" << message << "\" to client "<< i+1 << " at char room #" << CLIENTS[i].group << endl;
-				free(prefix);
+				delete[] prefix;
 			}
 		}
 	}
