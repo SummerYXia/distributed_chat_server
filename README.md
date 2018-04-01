@@ -17,7 +17,10 @@ Input that doesn't start with "/" is considered as a message that broadcast to a
 
 ## Test
 ### Use proxy to simulate message delay in localhost
+./proxy [-v] [-d max delay microseconds] [-l lossProbability] [config file]  
 If using proxy, config file should have 2 addresses for every server: forward and bind. Otherwise servers have 1 address.
 ### Use stresstest to verify capacity and ordering
 ./stresstest [-d delay] [-o order] [-c #clients] [-m #messages] [-g #group] [config file]  
 Keep all servers listed in config file running before stresstest
+
+## TODO: add causal ordering and message losses handling
